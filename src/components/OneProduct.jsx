@@ -1,13 +1,25 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { Link, useLocation } from 'react-router-dom'
+import store from '../redux/store'
+import { addItem } from '../redux/Cart'
+import {ToastContainer,toast } from 'react-toastify'
 
 const OneProduct = () => {
+
+    const dispatch=useDispatch();
+    
+
     const star=['https://cdn-icons-png.flaticon.com/512/69/69495.png']
     const[details,setDetails]=useState({});
+    const [qty,setQty]=useState(1);
      const location=useLocation();
      useEffect(()=>{
         setDetails(location?.state?.item);
      },[]);
+     const handleAddItem=()=>{
+         dispatch(addItem(details));
+       }
   return (
     <div>
         <div className='max-w-screen-xl mx-auto w-4/5 my-10 flex gap-10'>
@@ -33,7 +45,7 @@ const OneProduct = () => {
                      <img className='w-5 h-5' src={star[0]}/>
 
                      <img className='w-5 h-5' src={star[0]}/>
-                  {console.log(details)}
+                  {/* {console.log(details)} */}
                   
                 </div>
                 <div>
@@ -42,10 +54,10 @@ const OneProduct = () => {
                 <div className='flex items-center my-5 gap-10 m-3'>
                     <p className='text-sm'>Quantity</p>
                     <div className='flex  items-center gap-4 text-base font-semibold'>
-                    <button className='hover:bg-black hover:text-white px-2'>-</button>
-                    <button>{1}</button>
-                    <button className='hover:bg-black hover:text-white px-2'>+</button>
-                    <p  className="bg-green-500 text-white py-2 px-4 rounded transition duration-300 ease-in-out hover:bg-green-600 text-center">Add to cart</p> 
+                    <button onClick={()=>{setQty(qty===0? qty :qty-1 )}} className='hover:bg-black hover:text-white px-2'>-</button>
+                    <button>{qty}</button>
+                    <button onClick={()=>{setQty(qty+1)}} className='hover:bg-black hover:text-white px-2'>+</button>
+                    <p  onClick={()=>handleAddItem(details)&toast.success(`${details?.title} is added` )} className="bg-green-500 cursor-pointer text-white py-2 px-4 rounded transition duration-300 ease-in-out hover:bg-green-600 text-center">Add to cart</p> 
                     </div>
 
                 </div>
@@ -53,6 +65,19 @@ const OneProduct = () => {
 
         </div>
         </div>
+        <ToastContainer
+        position="top-right"
+         autoClose={4000}
+         hideProgressBar={false}
+         newestOnTop={false}
+         closeOnClick
+         rtl={false}
+         pauseOnFocusLoss
+         draggable
+         pauseOnHover
+         theme="dark"
+         />
+
         
     </div>
   )

@@ -9,6 +9,7 @@ function App() {
     <div className="font-bodyFont">
     
     <Home/>
+    <h1>The items is -</h1>
      </div>
      
     </>
