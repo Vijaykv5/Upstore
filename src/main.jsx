@@ -11,8 +11,10 @@ import Footer from './components/Footer.jsx'
 import { productsData } from './api/api.jsx'
 import OneProduct from './components/OneProduct.jsx'
 import { Provider } from 'react-redux'
-import { store } from './redux/store.js'
+import { store  } from './redux/store.js'
+import persistor from "./redux/store.js"
 import Cart from './pages/Cart.jsx'
+import { PersistGate } from 'redux-persist/integration/react'
 
 const AppLayout=()=>{
  
@@ -20,10 +22,11 @@ const AppLayout=()=>{
     
     
     <Provider store={store}>
-      
+      <PersistGate  persistor={persistor}>
     <Header/>
     <Outlet/>
     <Footer/>
+    </PersistGate>
      </Provider>
     
   )
