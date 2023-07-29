@@ -14,6 +14,7 @@ import { Provider } from 'react-redux'
 import { store  } from './redux/store.js'
 import persistor from "./redux/store.js"
 import Cart from './pages/Cart.jsx'
+import { app } from './firebase.config.js';
 import { PersistGate } from 'redux-persist/integration/react'
 
 const AppLayout=()=>{
