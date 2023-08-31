@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "vijaykv-upstore",
+    "public": "dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

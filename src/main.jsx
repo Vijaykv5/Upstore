@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom/client'
 //tostify
 import 'react-toastify/dist/ReactToastify.css';
 // import App from './App.jsx'
@@ -14,7 +14,7 @@ import { Provider } from 'react-redux'
 import { store  } from './redux/store.js'
 import persistor from "./redux/store.js"
 import Cart from './pages/Cart.jsx'
-import { app } from './firebase.config.js';
+//import { app } from './firebase.config.js';
 import { PersistGate } from 'redux-persist/integration/react'
 
 const AppLayout=()=>{
